@@ -27,7 +27,9 @@ Install PyTorch and ImageNet dataset following the [official PyTorch ImageNet tr
 
 This implementation only supports **multi-gpu**, **DistributedDataParallel** training, which is faster and simpler; single-gpu or DataParallel training is not supported.
 
-1. To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu machine, run on the first node:
+#### ResNet-50, pretrain
+
+To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu machine, run on the first node:
 
 ```
 python main_moco.py \
@@ -39,7 +41,9 @@ python main_moco.py \
 
 On the second node, run the same command with `--rank 1`.
 
-2. To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu machine, run:
+#### ViT-S, pretrain
+
+To do unsupervised pre-training of a ViT-Small model on ImageNet in an 8-gpu machine, run:
 
 ```bash
 python main_moco.py \
@@ -52,7 +56,8 @@ python main_moco.py \
   [your imagenet-folder with train and val folders]
 ```
 
-3. To do unsupervised pre-training of a ViT-Base model on ImageNet on 8 nodes, run:
+#### ViT-B, pretrain
+To do unsupervised pre-training of a ViT-Base model on ImageNet on 8 nodes, run:
 
 ```bash
 python main_moco.py \
@@ -104,7 +109,7 @@ See [./transfer](transfer).
 
 ### Models
 
-### ResNet-50, linear classification
+#### ResNet-50, linear classification
 
 | Pretrain epochs | Pretrain crops | Linear acc |
 |-----------------|----------------|------------|
@@ -112,14 +117,14 @@ See [./transfer](transfer).
 | 300             | 2x224          | 72.8       |
 | 1000            | 2x224          | 74.6       |
 
-### ViT, linear classification
+#### ViT, linear classification
 
 | Model      | Pretrain epochs | Pretrain crops | Linear acc |
 |------------|-----------------|----------------|------------|
 | ViT-Small  | 300             | 2x224          | 73.2       |
 | ViT-Base   | 300             | 2x224          | 76.7       |
 
-### ViT, end-to-end fine-tuning
+#### ViT, end-to-end fine-tuning
 
 | Model      | Pretrain epochs | Pretrain crops | E2E acc |
 |------------|-----------------|----------------|---------|
