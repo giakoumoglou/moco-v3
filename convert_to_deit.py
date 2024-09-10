@@ -13,10 +13,8 @@ import torch
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert MoCo Pre-Traind Model to DEiT')
-    parser.add_argument('--input', default='', type=str, metavar='PATH', required=True,
-                        help='path to moco pre-trained checkpoint')
-    parser.add_argument('--output', default='', type=str, metavar='PATH', required=True,
-                        help='path to output checkpoint in DEiT format')
+    parser.add_argument('--input', default='', type=str, metavar='PATH', required=True, help='path to moco pre-trained checkpoint')
+    parser.add_argument('--output', default='', type=str, metavar='PATH', required=True, help='path to output checkpoint in DEiT format')
     args = parser.parse_args()
     print(args)
 

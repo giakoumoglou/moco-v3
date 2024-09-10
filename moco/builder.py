@@ -31,7 +31,7 @@ class MoCo(nn.Module):
 
         for param_b, param_m in zip(self.base_encoder.parameters(), self.momentum_encoder.parameters()):
             param_m.data.copy_(param_b.data)  # initialize
-            param_m.requires_grad = False  # not update by gradient
+            param_m.requires_grad = False     # not update by gradient
 
     def _build_mlp(self, num_layers, input_dim, mlp_dim, output_dim, last_bn=True):
         mlp = []
