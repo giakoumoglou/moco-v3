@@ -1,6 +1,6 @@
 ## MoCo v3: An Empirical Study of Training Self-Supervised Vision Transformers
 
-This is a PyTorch implementation of the [MoCo v3 paper]([https://arxiv.org/abs/1911.05722](https://arxiv.org/abs/2104.02057)):
+This is a PyTorch implementation of the [MoCo v3 paper](https://arxiv.org/abs/2104.02057):
 
 ```
 @misc{chen2021empiricalstudytrainingselfsupervised,
