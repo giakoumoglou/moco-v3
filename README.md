@@ -27,7 +27,7 @@ Install PyTorch and ImageNet dataset following the [official PyTorch ImageNet tr
 
 This implementation only supports **multi-gpu**, **DistributedDataParallel** training, which is faster and simpler; single-gpu or DataParallel training is not supported.
 
-To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu machine, run on the first node:
+1. To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu machine, run on the first node:
 
 ```
 python main_moco.py \
@@ -39,7 +39,7 @@ python main_moco.py \
 
 On the second node, run the same command with `--rank 1`.
 
-To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu machine, run:
+2. To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu machine, run:
 
 ```bash
 python main_moco.py \
@@ -52,7 +52,7 @@ python main_moco.py \
   [your imagenet-folder with train and val folders]
 ```
 
-To do unsupervised pre-training of a ViT-Base model on ImageNet on 8 nodes, run:
+3. To do unsupervised pre-training of a ViT-Base model on ImageNet on 8 nodes, run:
 
 ```bash
 python main_moco.py \
