@@ -34,7 +34,7 @@ To do unsupervised pre-training of a ResNet-50 model on ImageNet in an 8-gpu mac
 ```
 python main_moco.py \
   --moco-m-cos --crop-min=.2 \
-  --dist-url 'tcp://[your first node address]:[specified port]' \
+  --dist-url 'tcp://localhost:10001' \
   --multiprocessing-distributed --world-size 2 --rank 0 \
   [your imagenet-folder with train and val folders]
 ```
@@ -65,7 +65,7 @@ python main_moco.py \
   --optimizer=adamw --lr=1.5e-4 --weight-decay=.1 \
   --epochs=300 --warmup-epochs=40 \
   --stop-grad-conv1 --moco-m-cos --moco-t=.2 \
-  --dist-url 'tcp://[your first node address]:[specified port]' \
+  --dist-url 'tcp://localhost:10001' \
   --multiprocessing-distributed --world-size 8 --rank 0 \
   [your imagenet-folder with train and val folders]
 ```
