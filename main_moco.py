@@ -62,6 +62,7 @@ parser.add_argument("--dist-backend", default="nccl", type=str, help="distribute
 parser.add_argument("--seed", default=None, type=int, help="seed for initializing training")
 parser.add_argument("--gpu", default=None, type=int, help="GPU id to use")
 parser.add_argument("--multiprocessing-distributed", action="store_true", help="use multi-processing distributed training to launch N processes per node, which has N GPUs. This is the fastest way to use PyTorch for either single node or multi node data parallel training")
+parser.add_argument("--save-dir", default="./", type=str, help="directory to save checkpoints (default: './')")
 
 # moco specific configs:
 parser.add_argument("--moco-dim", default=256, type=int, help="feature dimension (default: 256)")
@@ -289,6 +290,7 @@ def main_worker(gpu, ngpus_per_node, args):
                 },
                 is_best=False,
                 filename="checkpoint_{:04d}.pth.tar".format(epoch),
+                path=args.save_dir,
             )
 
     if args.rank == 0:
@@ -347,10 +349,12 @@ def train(train_loader, model, optimizer, scaler, summary_writer, epoch, args):
             progress.display(i)
 
 
-def save_checkpoint(state, is_best, filename="checkpoint.pth.tar"):
-    torch.save(state, filename)
+def save_checkpoint(state, is_best, filename="checkpoint.pth.tar", path='./'):
+    os.makedirs(path, exist_ok=True)
+    full_filename = os.path.join(path, filename)
+    torch.save(state, full_filename)
     if is_best:
-        shutil.copyfile(filename, "model_best.pth.tar")
+        shutil.copyfile(full_filename, os.path.join(path, "model_best.pth.tar"))
 
 
 class AverageMeter:
