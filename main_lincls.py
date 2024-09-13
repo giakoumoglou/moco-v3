@@ -63,6 +63,7 @@ best_acc1 = 0
 
 def main():
     args = parser.parse_args()
+    args.save_dir = args.pretrained.split('checkpoint')[0]
 
     if args.seed is not None:
         random.seed(args.seed)
@@ -313,6 +314,7 @@ def main_worker(gpu, ngpus_per_node, args):
                     "optimizer": optimizer.state_dict(),
                 },
                 is_best,
+                path=args.save_dir,
             )
             if epoch == args.start_epoch:
                 sanity_check(model.state_dict(), args.pretrained, linear_keyword)
@@ -412,10 +414,12 @@ def validate(val_loader, model, criterion, args):
     return top1.avg
 
 
-def save_checkpoint(state, is_best, filename="checkpoint.pth.tar"):
-    torch.save(state, filename)
+def save_checkpoint(state, is_best, filename="checkpoint_lincls.pth.tar", path='./'):
+    os.makedirs(path, exist_ok=True)
+    full_filename = os.path.join(path, filename)
+    torch.save(state, full_filename)
     if is_best:
-        shutil.copyfile(filename, "model_best.pth.tar")
+        shutil.copyfile(full_filename, os.path.join(path, "model_best_lincls.pth.tar"))
 
 
 def sanity_check(state_dict, pretrained_weights, linear_keyword):
